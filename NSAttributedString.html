@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+  body {background-color: powderblue;}
+
+  </style>
+<script>
+
+function getString() {
+
+  var str = document.getElementById("StringValue").value;
+  var colorAttribute = getColor()
+  var fontAttribute = getFont()
+  var attributes = "let str = \"" + str + "\"\nvar attributes = [NSAttributedStringKey: AnyObject]()\nattributes[NSAttributedStringKey.foregroundColor] = " + colorAttribute + "\nattributes[NSAttributedStringKey.font] = UIFont.systemFont(ofSize: "+ fontAttribute +") \nlet attributedString = NSAttributedString(string: str, attributes: attributes)"
+
+  return attributes
+}
+
+function getColor() {
+  var c = document.getElementById("ColorList");
+  var selectedColor = c.options[c.selectedIndex].value;
+  return selectedColor
+}
+
+function getFont() {
+  var f = document.getElementById("FontSize");
+  var selectedFont = f.options[f.selectedIndex].value;
+  return selectedFont
+}
+
+function showValue() {
+  document.getElementById("Output").value = getString()
+}
+
+</script>
+</head>
+
+<body>
+<center>
+<h1>NSAttributedString</h1>
+
+<form>
+<br>
+<br>
+ <input id="StringValue" type="text" name="String" placeholder="Enter text"> <br>
+</form>
+<select id="ColorList">
+  <option id="Red" value="UIColor.red">Red</option>
+  <option id="Green" value="UIColor.green">Green</option>
+  <option id="Blue" value="UIColor.blue">Blue</option>
+  <option id="Yellow" value="UIColor.yellow">Yellow</option>
+</select>
+<select id="FontSize">
+  <option id="10" value="10.0">10pt</option>
+  <option id="12" value="12.0">12pt</option>
+  <option id="14" value="14.0">14pt</option>
+  <option id="16" value="16.0">16pt</option>
+</select>
+<br>
+<button type="button" onclick="showValue()">Get</button>
+<br>
+<form>
+<br>
+ <textarea id="Output" name="Text1" cols="60" rows="8"></textarea>
+ <br>
+</form>
+<p id="demo" align="left"> </p>
+
+
+
+</center>
+</body>
+</html>
